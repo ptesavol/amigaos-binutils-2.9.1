@@ -879,6 +879,13 @@ amiga_handle_cdb_hunk (bfd * abfd,
 	  hunk_attribute = (hunk_attribute == HUNK_ATTR_CHIP) ? MEMF_CHIP :
 	    (hunk_attribute == HUNK_ATTR_FAST) ? MEMF_FAST : 0;
 	}
+      if (hunk_attribute == MEMF_CHIP)
+	{
+	   if (hunk_type == HUNK_BSS)
+	 current_name=".bss_chip";
+	   else
+     current_name=".data_chip";	
+    }
       /* Make new section */
       current_section = amiga_make_unique_section (abfd, current_name);
       if (!current_section)
